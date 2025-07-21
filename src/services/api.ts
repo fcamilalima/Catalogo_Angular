@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { catchError, tap, map } from 'rxjs';
 import { Categoria } from '../model/categoria';
 import { Usuario } from '../model/usuario';
-import { InvalidatedProjectKind } from 'typescript';
 
 const apiURL = 'http://localhost:7300/api/v1/Categorias';
 const apiLoginUrl = 'http://localhost:7300/api/Auth/login';
@@ -39,7 +38,11 @@ export class ApiService {
 
 Login(Usuario: Usuario) : Observable<Usuario> {
   return this.http.post<Usuario>(apiLoginUrl, Usuario).pipe(
-    tap((Usuario: Usuario) => console.log(`Login usuário com email = ${Usuario.email}`)),
+    tap((Usuario: Usuario) => {
+      console.log(`Login usuário = ${Usuario.userName}`);
+      console.log(`Token = ${Usuario.token}`);
+      console.log(`apiLoginUrl = ${apiLoginUrl}`);
+  }),
     catchError(this.handleError<Usuario>('Login'))
   );
 }

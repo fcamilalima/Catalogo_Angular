@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div class="login-container">
+    <h3>Login</h3>
+    <form class="login-form example-container" [formGroup]="loginForm" (ngSubmit)="addLogin()" align="center">
+        <label for="userName">Usuário</label>
+        <mat-form-field>
+            <input matInput name="userName" placeholder="User Name" formControlName="userName">    
+        </mat-form-field>
+        <br/>
+        <label for="password">Senha</label>
+        <mat-form-field>
+            <textarea matInput name="password" placeholder="Senha" formControlName="password"></textarea>
+        </mat-form-field>
+        <br/>
+        <br/>
+        <button type="submit" [disabled]="!loginForm.valid" mat-button color="primary">Enviar</button>
+    </form>
+</div>
