@@ -36,7 +36,8 @@ export const routes: Routes = [
         path: 'categoria-editar/:id',
         component: CategoriaEditar, 
         data: { title: 'Editar a Categoria' }
-    },{
+    },
+    {
         path: '',
         redirectTo: '/categorias',  
         pathMatch: 'full'
