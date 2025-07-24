@@ -27,7 +27,6 @@ export class ApiService {
 
   montarHeaderToken(){
     token = localStorage.getItem('jwt');
-    console.log('jwt header token ' + token);
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -39,9 +38,7 @@ export class ApiService {
 Login(Usuario: Usuario) : Observable<Usuario> {
   return this.http.post<Usuario>(apiLoginUrl, Usuario).pipe(
     tap((Usuario: Usuario) => {
-      console.log(`Login usuário = ${Usuario.userName}`);
-      console.log(`Token = ${Usuario.token}`);
-      console.log(`apiLoginUrl = ${apiLoginUrl}`);
+      console.log(`Usuário logado com sucesso!`);
   }),
     catchError(this.handleError<Usuario>('Login'))
   );
@@ -49,7 +46,7 @@ Login(Usuario: Usuario) : Observable<Usuario> {
 
 getCategorias() : Observable<Categoria[]>{
   this.montarHeaderToken();
-  console.log(httpOptions.headers);
+  // console.log(httpOptions.headers);
   return this.http.get<Categoria[]>(apiURL, httpOptions).pipe(
     tap(Categorias => console.log('Leu as Categorias')),
     catchError(this.handleError('getCategorias', []))

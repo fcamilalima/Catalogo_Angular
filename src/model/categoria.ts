@@ -1,5 +1,11 @@
 export class Categoria{
-    categoriaId!: string;
+    categoriaId!: number;
     nome!: string;
-    imagemUrl!: string;
+    imageUrl!: string;
+
+    constructor(categoriaId: number,  nome: string, imageUrl: string){
+        this.categoriaId = categoriaId;
+        this.nome = nome;
+        this.imageUrl = imageUrl;
+    }
 }
