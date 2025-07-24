@@ -1,0 +1,25 @@
+table {
+    width: 40%;
+}
+
+mat-card {
+    width: 35%;
+    margin: 5px auto;
+    background-color: #ffffff;
+} 
+
+button {
+    display: flex;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+.excluir {
+    margin-left: 15px !important;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

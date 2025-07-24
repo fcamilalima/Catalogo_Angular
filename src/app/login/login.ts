@@ -36,8 +36,6 @@ addLogin(){
   this.api.Login(this.loginForm.value).subscribe({
     next: (res: Usuario) => {
       console.log('Login efetuado com sucesso');
-      console.log(`Username: ${res.userName}`);
-      console.log(`Password: ${res.password}`);
       this.dataSource = res;
       localStorage.setItem('jwt', this.dataSource.token);
       this.isLoadingResults = false;
@@ -51,18 +49,6 @@ addLogin(){
 });
 }
 
-// addLogin(form: NgForm){
-//   this.isLoadingResults = true;
-//   this.api.Login(form).subscribe( res => {
-//       this.dataSource = res;
-//       localStorage.setItem('jwt', this.dataSource.token);
-//       this.isLoadingResults = false;
-//       this.router.navigate(['/categorias']);
-//     }, (err) => {
-//       console.error(err);
-//       this.isLoadingResults = false;
-//   });
-// }
 }
 
   

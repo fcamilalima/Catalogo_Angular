@@ -1,14 +1,12 @@
-Enviar
-.login-container {
+.login-container, div[_ngcontent-ng-c386392958] {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
   justify-content: center;
+  width: 60%;
+  justify-content: center; 
 }
 
 .login-form {
-  width: 100%;
+  width: 50%;
   max-width: 350px;
   display: flex;
   flex-direction: column;
