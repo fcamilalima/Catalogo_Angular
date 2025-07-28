@@ -1,1 +1,16 @@
-<p>categoria-editar works!</p>
+<div class="container">
+    <h3>Editar Categoria</h3>
+</div>
+<form class="example-container" [formGroup]="categoriaForm" (ngSubmit)="updateCategoria()">
+    <mat-form-field>
+        <input matInput name="nome" placeholder="Nome da Categoria" formControlName="nome">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput name="imageURL" placeholder="Imagem" formControlName="imageUrl">
+    </mat-form-field>
+    <br>
+    <button type="submit" [disabled]="!categoriaForm.valid" mat-button color="primary">
+        Editar
+    </button>
+</form>

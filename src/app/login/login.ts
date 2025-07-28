@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
   selector: 'login',
   templateUrl: './login.html',
   standalone: true,
+  styleUrl: './login.scss',
   imports: [
     MatButtonModule, MatToolbarModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule
   ],
@@ -41,7 +42,6 @@ addLogin(){
       this.isLoadingResults = false;
       this.router.navigate(['/categorias']);
   },
-  
   error: (err: any) => {
     console.error(err);
     this.isLoadingResults = false;

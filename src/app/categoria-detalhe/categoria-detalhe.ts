@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Categoria } from '../../model/categoria';
@@ -9,7 +9,7 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-categoria-detalhe',
-  imports: [ CommonModule, MatIconModule, MatProgressSpinnerModule, 
+  imports: [CommonModule, MatIconModule, MatProgressSpinnerModule,
     MatCardModule, RouterModule],
   standalone: true,
   templateUrl: './categoria-detalhe.html',
@@ -19,32 +19,51 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 export class CategoriaDetalhe {
   isLoadingResults = true;
   categoria = {
-    categoriaId: 0,    
+    categoriaId: 0,
     nome: '',
     imageUrl: ''
   };
-  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService){}
 
-  ngOnInit(){
-    this.api.getCategoria(this.route.snapshot.params['id']);
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) { }
+
+  ngOnInit() {
+    const id = Number(this.route.snapshot.params['id']);
+    if(id){
+      // console.log('Número da Categoria: ' + this.route.snapshot.params['id']);
+      //this.api.getCategoria(this.route.snapshot.params['id']);
+      this.getCategoria(id);
+    } else{
+      this.isLoadingResults = false;
+      alert('ID de categoria inválido!');
+    }
   }
 
-  getCategoria(id: number){
-    this.api.getCategoria(id).subscribe(data => {
-      this.categoria = data;
-      console.log('Categoria Detalhes: ' + this.categoria);
-      this.isLoadingResults = false;
+  getCategoria(id: number) {
+    this.api.getCategoria(id).subscribe({
+      next: (data: Categoria) => {
+        this.categoria = data;
+        this.isLoadingResults = false;
+      },
+      error: (err) => {
+        console.error('Erro ao obter detalhes da categoria: ', err);
+        this.isLoadingResults = false;
+        alert('Erro ao obter detalhes da categoria: ' + id);
+      }
     });
   }
   deleteCategoria(id: number) {
     this.isLoadingResults = true;
-    this.api.deleteCategoria(id).subscribe(res => {
-
-    },
-    (err) => {
-      console.log(`Mensgem de erro: ${err}`);
-      this.isLoadingResults = false;
-      });
-    alert('Categoria deletada: ' + id);
+    this.api.deleteCategoria(id).subscribe({
+      next: (data: Categoria) => {
+        console.log(`Categoria deletada: ${id}`);
+        this.router.navigate(['/categorias']);
+        this.isLoadingResults = false;
+      },
+      error: (err) => {
+        console.log(`Mensagem de erro: ${err}`);
+        this.isLoadingResults = false;
+        alert('Categoria deletada: ' + id);
+      }
+    });
   }
 }
