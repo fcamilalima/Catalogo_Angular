@@ -1,7 +1,9 @@
-p{
+mat-form-field{
+    width: 50%;
+}
+
+.container, .example-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: left;
-    height: 100vh;    
 }

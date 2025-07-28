@@ -62,11 +62,11 @@ export class ApiService {
     );
   }
 
-  addCategoria(): Observable<Categoria> {
+  addCategoria(categoria: Categoria): Observable<Categoria> {
     this.montarHeaderToken();
-    return this.http.post<Categoria>(apiURL, Categoria, httpOptions).pipe(
-      tap((Categoria: Categoria) => console.log(`
-      Adicioinada a Categoria com id = ${Categoria.categoriaId}`)),
+    return this.http.post<Categoria>(apiURL, categoria, httpOptions).pipe(
+      tap((c: Categoria) => console.log(`
+      Adicionada a Categoria com id = ${c.categoriaId}`)),
       catchError(this.handleError<Categoria>('addCategoria'))
     )
   }
