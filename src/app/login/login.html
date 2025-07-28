@@ -1,13 +1,13 @@
-<div class="login-container">
+<div class="container">
     <h3>Login</h3>
     <form class="login-form example-container" [formGroup]="loginForm" (ngSubmit)="addLogin()" align="center">
         <label for="userName">Usuário</label>
-        <mat-form-field>
+        <mat-form-field class="full-width">
             <input matInput name="userName" placeholder="User Name" formControlName="userName">    
         </mat-form-field>
         <br/>
         <label for="password">Senha</label>
-        <mat-form-field>
+        <mat-form-field class="full-width">
             <textarea matInput name="password" placeholder="Senha" formControlName="password"></textarea>
         </mat-form-field>
         <br/>
